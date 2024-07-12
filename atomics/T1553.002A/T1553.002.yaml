@@ -1,0 +1,19 @@
+attack_technique: T1553.002A
+display_name: T1553.002A test
+atomic_tests:
+- name: T1553.002A test
+  auto_generated_guid: 7e8a1bba-b624-475d-b2f9-6e581bc1845b
+  description: |-
+    test
+  supported_platforms:
+  - windows
+  executor:
+    command: |
+      $url = 'https://mega.nz/MEGAsyncSetup64.exe';
+      $PATH = $env:PUBLIC + '\mega.exe';
+      (New-Object System.Net.WebClient).DownloadFile($URL, $Path);
+      Start-Sleep -s 5
+      Remove-Item $PATH -Force
+    name: powershell
+    elevation_required: true
+  
